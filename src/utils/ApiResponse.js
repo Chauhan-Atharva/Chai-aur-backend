@@ -6,3 +6,5 @@ class ApiResponse {
         this.success = statusCode < 400; //no hard and fast rule - just my range 
     }
 }
+
+export {ApiResponse}
