@@ -19,7 +19,7 @@ const userSchema = new Schema (
             lowercase : true, 
             trim: true
         },
-        fullname: {
+        fullName: {
             type: String, 
             required: true,  
             trim: true,
@@ -49,11 +49,11 @@ const userSchema = new Schema (
     } , {timestamps : true}
 );
 //in arrow function - we don't have reference of this 
-userSchema.pre("save" , async function (next) {
-    if(! this.isModified("password"))  return next(); 
+userSchema.pre("save" ,async function () {
+    if(! this.isModified("password"))  return ; 
     //isModified - provided by default 
-    this.password = bcrypt.hash(this.password, 10); //10 rounds of algorithm 
-    next();
+    this.password = await bcrypt.hash(this.password, 10); //10 rounds of algorithm 
+   
 })
 
 //adding custom methods 
